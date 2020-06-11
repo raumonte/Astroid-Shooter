@@ -8,10 +8,13 @@ public class Player : MonoBehaviour
     public float turnSpeed = 90f;
     
     //moveSpeed goes by meters per second or a unity unit per second
-    public float moveSpeed = 5f;
+    public float moveSpeed = 6f;
 
 
     private Transform tf;
+
+    public GameObject bulletPrefab;
+    public float bulletSpeed = 6f;
 
     //Within this function it contains the if statements of rotating the object when using the left and right arrow keys.
     public void RotationOfObject()
@@ -47,11 +50,7 @@ public class Player : MonoBehaviour
     }
 
     //This function contains the code to be able to shoot from the object.
-    public void Shoot()
-    {
-        Debug.Log("Bang Bang");
-    }
-    
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +72,26 @@ public class Player : MonoBehaviour
             Shoot();
         }
     }
-  
+     void Shoot()
+    {
+        //Debug.Log("Bang Bang");
+        //this is notes for a way to do it. But it isn't recomended.
+        //GameObject bullet = new GameObject();
+        //SpriteRenderer bulletspriteRenderer = bullet.AddComponent<SpriteRenderer>() as SpriteRenderer;
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        bullet.GetComponent<Bullet>().bulletSpeed = bulletSpeed;
+    }
 
+    void OnCollisionEnter2D(Collision2D otherObject)
+    {
+        DeathOfPlayer();
+    }
+    void DeathOfPlayer()
+    {
+        Destroy(this.gameObject);
+    }
+    void OnDestroy()
+    {
+        GameManager.instance.player = null;
+    }
 }
