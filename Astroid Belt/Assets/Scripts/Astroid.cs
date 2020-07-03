@@ -17,6 +17,7 @@ public class Astroid : MonoBehaviour
     {
         transform.position += directionToMove * moveSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.player.transform.position, moveSpeed * Time.deltaTime);
+
     }
     private void OnDestroy()
     {
