@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
+
+    public event Action PlayerDied;
     //turn Speed goes by degrees per second
     public float turnSpeed = 90f;
     
     //moveSpeed goes by meters per second or a unity unit per second
     public float moveSpeed = 6f;
-
 
     private Transform tf;
 
@@ -86,8 +88,9 @@ public class Player : MonoBehaviour
     {
         DeathOfPlayer();
     }
-    void DeathOfPlayer()
+    private void DeathOfPlayer()
     {
+        EventBroker.CallPlayerDied();
         Destroy(this.gameObject);
     }
     void OnDestroy()

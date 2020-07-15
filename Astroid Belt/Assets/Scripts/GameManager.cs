@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int score;
+    public float spawnDistance;
     public GameObject player;
     public GameObject playerPrefab;
     public List<GameObject> enemyList;
     public List<GameObject> enemyPrefabList;
     public List<Transform> spawnPointList;
-    public float spawnDistance;
-
+    
     void Awake()
     {
 
@@ -32,24 +33,28 @@ public class GameManager : MonoBehaviour
         GameObject enemyToSpawn = enemyPrefabList[Random.Range(0, enemyPrefabList.Count)];
 
         //Pick a random spawn point to spawn at.
-
         Transform spawnPoint = spawnPointList[Random.Range(0, spawnPointList.Count)];
+        
         //These two lines help to pick a point on where the spawn point is to spawn the enemies at.
         Vector3 randomVector = Random.insideUnitCircle;
         Vector3 newPosition = spawnPoint.position + (randomVector * spawnDistance);
+        
+        // Instantiate enemy to a selecte position.
         Instantiate(enemyToSpawn, newPosition, Quaternion.identity);
     }
-    private void Start()
+     void Start()
     {
-        
+        SpawnPlayer();
     }
-    private void Update()
+    void Update()
     {
+       
         if (player != null)
         {
-         if (enemyList.Count < 3)
+          if (enemyList.Count < 3)
          {
                 SpawnEnemy();
+                Debug.Log("FUCK");
          }
         }
 
@@ -58,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         if (player != null)
         {
+           
             player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         }
     }
