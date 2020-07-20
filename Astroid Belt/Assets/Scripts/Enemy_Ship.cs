@@ -4,65 +4,76 @@ using UnityEngine;
 
 public class Enemy_Ship : MonoBehaviour
 {
-   // private Vector3 targetPosition;
     public float rotateSpeed;
     public float moveSpeed;
-    private Transform tf; // var to hold my transform
+    private Transform tf;
 
-    private Vector3 myStartPosition; // var to hold start position vector of asteroid
-    private Vector3 playerStartPosition; // var to hold position of player (destination)
-    private Vector3 directionVector; // var to hold vector, calculate direction to travel
-    private Vector3 moveVector; // var to hold and calculate direction and speed for movement
+    private Vector3 myStartPosition;
+    private Vector3 playerStartPosition; 
+    private Vector3 directionVector;
+    private Vector3 moveVector;
 
-    private Vector3 myStartRotation; // var to hold start rotation vector of asteroid
-    private Vector3 playerStartRotation; // var to hold rotation of player (destination)
-    private float angle; // var to hold float, calculate angle to travel
-    Quaternion targetRotation; // var to hold and calculate rotation
+    private Vector3 myStartRotation; 
+    private Vector3 playerStartRotation;
+    private float angle; 
+    Quaternion targetRotation; 
 
-    // Start is called before the first frame update
+  
     void Start()
     {
+        //This makes the enemy ship an enemy object to add on the list of items.
         GameManager.instance.enemyList.Add(this.gameObject);
         tf = GetComponent<Transform>();
     }
     private void OnDestroy()
     {
+        //once destroyed it will remove the ship from the scene and list.
         GameManager.instance.enemyList.Remove(this.gameObject);
     }
-    // Update is called once per frame
+    //Whenever an object collides with the astroid it will begin to activate any code within the function.
+    private void OnCollisionEnter2D(Collision2D otherObject)
+    {
+        // This if statment gets activated once the player collides with the astroid.
+        if (otherObject.gameObject == GameManager.instance.player)
+        {
+            Debug.Log("Wow Buddy..");
+        }
+        // This if statment activates once a game object containing the Bullet script collides with the astroid.
+        if (otherObject.gameObject.GetComponent<Bullet>())
+        {
+            GameManager.instance.enemyList.Remove(this.gameObject);
+            Destroy(this.gameObject);
+
+        }
+    }
     void Update()
     {
-        //targetPosition = GameManager.instance.player.transform.position;
-        //Vector3 directionToLook = targetPosition - transform.position;
-        //transform.right = directionToLook;
-        //directionToLook
-       // transform.rotation =Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(transform.right, transform.forward), speedOfRotation * Time.deltaTime);
-        //Vector3.RotateTowards(transform.position, targetPosition, speedOfRotation);
-        //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(transform.right, transform.forward), rotationSpeed * Time.deltaTime);
+        //Using this if stament activates when the player is still present in the scene.
     if (GameManager.instance.player != null)
         {
-            //MOVEMENT
-            //---------------------------------
-            //Update variables every frame
-            myStartPosition = tf.position; // store my position on every frame
-            playerStartPosition = GameManager.instance.player.gameObject.transform.position; //store position of player on every frame
+            //The rotation of the object will equal the same as the target's position.
+            myStartPosition = tf.position; 
 
-            directionVector = playerStartPosition - myStartPosition; //store diff between player and asteroid as direction on every frame
-            directionVector.Normalize(); // normalize the vector to a magnitude of 1
+            //This will get the position of the player from the game manager.
+            playerStartPosition = GameManager.instance.player.gameObject.transform.position;
+
+            //Having the difference of the position of the player and enemyship to be able to see where the player may be.
+            directionVector = playerStartPosition - myStartPosition;
+            directionVector.Normalize();
 
             moveVector = directionVector * moveSpeed; //calculate the new vector
 
             //Move towards the point where the player was on start
-            tf.position += moveVector; //move in that direction each frame at given speed on every frame
+            tf.position += moveVector;
+            
+            //uses math to calculate the angle of where the enemy ship has to look at.
+            angle = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg; 
 
-
-            //ROTATION
-            //--------------------------------
-            //Update variables every frame
-
-            angle = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg; //calculate angle based on direction to player
-            targetRotation = Quaternion.Euler(0, 0, angle); //update angle to rotate towards
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime); //gradually rotate towards angle times speed
+            //This helps in getting the update of the angle so it can look at the player.
+            targetRotation = Quaternion.Euler(0, 0, angle);
+            
+            //Helps to actually turn the object to look at the target that has been targeted.
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
         }
 
 

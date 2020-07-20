@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7017018558076754527}
   - component: {fileID: -3415014315999445721}
   - component: {fileID: 5776578801162447618}
+  - component: {fileID: 1608377538195802040}
   m_Layer: 0
   m_Name: EnemyShip
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8511ff7ee6cbc294c9508cefc038cf3b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1b30985395f867448faa75a0aa44303, type: 3}
   m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,3 +96,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 90
   moveSpeed: 0
+--- !u!61 &1608377538195802040
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401657376450505452}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0060563087, y: 0.06056571}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.3, y: 3.3}
+    newSize: {x: 3.3, y: 3.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.94872, y: 2.2340465}
+  m_EdgeRadius: 0

@@ -173,7 +173,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -240,6 +240,7 @@ MonoBehaviour:
   enemyList: []
   enemyPrefabList:
   - {fileID: 9069116537134047810, guid: 03289837a74a2204da5ddb48c46dff8c, type: 3}
+  - {fileID: 6401657376450505452, guid: 56bea927cef3b8b43ae3dd9768d9e8a8, type: 3}
   spawnPointList:
   - {fileID: 884804229}
   - {fileID: 1399079817}
@@ -282,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884804228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.97, y: 2.79, z: -9.020137}
+  m_LocalPosition: {x: -9.84, y: 2.87, z: -9.020137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -312,7 +313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977896140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.08, y: 0.09, z: -9.020137}
+  m_LocalPosition: {x: 10.52, y: 3.74, z: -9.020137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -342,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399079816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.23, y: 3.55, z: -9.020137}
+  m_LocalPosition: {x: -11.46, y: -4.89, z: -9.020137}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -509,6 +510,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401657376450505452, guid: 56bea927cef3b8b43ae3dd9768d9e8a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7017018558076754527, guid: 56bea927cef3b8b43ae3dd9768d9e8a8,
         type: 3}
